@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>∆Ω-404</title>
   <style>
@@ -8,7 +10,6 @@
       color: #ff0033;
       font-family: monospace;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
