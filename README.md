@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>𓂀 ∆Ω-Realm</title>
+  <title>𓂀 ∆Ω-Unit.404</title>
   <style>
     body {
       margin: 0;
@@ -28,6 +28,14 @@
       color: #cc66ff;
     }
 
+    .site-title {
+      font-size: 32px;
+      color: #ff66cc;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff99ff, 0 0 20px #cc33cc;
+      font-family: 'Segoe UI Symbol', monospace;
+    }
+
     .secret-btn {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid #a833ff;
@@ -46,6 +54,12 @@
       background: #330044;
       box-shadow: 0 0 10px #99ffcc;
     }
+
+    .subtitle {
+      color: #ccffcc;
+      font-size: 12px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -53,11 +67,12 @@
 <canvas id="matrixCanvas"></canvas>
 
 <div class="center-content">
+  <div class="site-title">𓂀 ∆Ω-Unit.404</div>
   <button class="secret-btn">𓂀</button>
   <button class="secret-btn">𒀭</button>
   <button class="secret-btn">𓊽</button>
   <button class="secret-btn">𒁃</button>
-  <p style="color:#ccffcc; font-size: 12px; margin-top: 20px;">▧ اضغط أحد الرموز لتكشف عن الطبقة التالية ▧</p>
+  <p class="subtitle">▧ اضغط أحد الرموز لتكشف عن الطبقة التالية ▧</p>
 </div>
 
 <script>
@@ -75,7 +90,7 @@
   function draw() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#cc66ff'; // بنفسجي مشع
+    ctx.fillStyle = '#cc66ff';
     ctx.shadowColor = '#99ffcc';
     ctx.shadowBlur = 4;
     ctx.font = fontSize + "px monospace";
