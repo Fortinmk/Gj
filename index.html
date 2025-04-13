@@ -5,55 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>∆Ω-Unit.404</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
       overflow: hidden;
+      background: black;
+      color: #0f0;
       font-family: monospace;
-      color: #00ff00;
     }
+
     canvas {
-      position: absolute;
+      display: block;
+      position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
+      z-index: -1;
     }
+
     .content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      flex-direction: column;
-      color: #00ffcc;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-    }
-    h1 {
+      color: #e60000;
       font-size: 24px;
-      margin-bottom: 10px;
+      text-shadow: 0 0 10px red;
     }
-    .button-container {
+
+    .buttons {
+      margin-top: 20px;
       display: flex;
-      gap: 20px;
-      margin-top: 30px;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-    .ancient-button {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid #00ffcc;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      color: #00ffcc;
+
+    .btn {
+      background: #1a1a1a;
+      color: #0f0;
+      font-size: 18px;
+      border: 2px solid #0f0;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-family: "Courier New", monospace;
+      text-shadow: 0 0 5px #0f0;
+      transition: 0.3s;
       cursor: pointer;
-      font-family: 'Courier New', monospace;
-      transition: all 0.3s ease;
     }
-    .ancient-button:hover {
-      background: #00ffcc;
-      color: black;
+
+    .btn:hover {
+      background: #0f0;
+      color: #000;
+      text-shadow: none;
     }
   </style>
 </head>
@@ -61,45 +64,47 @@
   <canvas id="matrix"></canvas>
   <div class="content">
     <h1>∆Ω-Unit.404</h1>
-    <div class="button-container">
-      <button class="ancient-button">𒀱𒈠</button>
-      <button class="ancient-button">𒆠𒂗𒍣</button>
-      <button class="ancient-button">𒊕𒀭</button>
+    <div class="buttons">
+      <button class="btn">𒀭</button>
+      <button class="btn">𒈨</button>
+      <button class="btn">𒉿</button>
+      <button class="btn">𒆠</button>
     </div>
   </div>
 
   <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
 
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    const letters = "アカサタナハマヤラワ0123456789ｱｶｻﾀﾅﾊﾏﾔﾗﾜ";
-    const fontSize = 10;
+    const letters = "01𒀭𒈨𒉿𒆠";
+    const fontSize = 12;
     const columns = canvas.width / fontSize;
 
     const drops = Array(Math.floor(columns)).fill(1);
 
-    function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#00ff00";
+      ctx.fillStyle = "#0f0";
       ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
+
         drops[i]++;
       }
     }
 
-    setInterval(drawMatrix, 80);
+    setInterval(draw, 75);
   </script>
 </body>
 </html>
