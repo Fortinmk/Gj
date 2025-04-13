@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    color: #0f0;
+}
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+h1 {
+    font-size: 3rem;
+    color: #0f0;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #00ff88;
+}
+.shapes {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+.shape {
+    width: 80px;
+    height: 80px;
+    animation: rotate 10s linear infinite;
+}
+.triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background: rgba(0, 255, 0, 0.3);
+}
+.hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: rgba(0, 255, 128, 0.3);
+}
+.spiral {
+    background: conic-gradient(#0f0 0% 25%, transparent 25% 100%);
+    border-radius: 50%;
+}
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.matrix-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 0;
+    pointer-events: none;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
