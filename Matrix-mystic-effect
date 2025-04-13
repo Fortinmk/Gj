@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⟁Ω∞: Protocol-V0id404</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      color: #00ffe7;
+      font-family: 'Courier New', Courier, monospace;
+    }
 
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: -1;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #ff0048;
+      text-shadow: 0 0 12px #ff0048, 0 0 40px #00ffe7;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+      font-family: "Orbitron", monospace;
+      text-transform: uppercase;
+      color: #00ffe7;
+      text-shadow: 0 0 25px #00ffe7, 0 0 55px #ff0048;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      background: transparent;
+      color: #ff0048;
+      border: 2px solid #00ffe7;
+      padding: 14px 22px;
+      font-size: 1.6rem;
+      font-family: 'Noto Sans Cuneiform', serif;
+      border-radius: 12px;
+      text-shadow: 0 0 7px #ff0048;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(3px);
+    }
+
+    .btn:hover {
+      background: #00ffe7;
+      color: #000;
+      text-shadow: none;
+      transform: scale(1.1);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Cuneiform&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="content">
+    <h1>⟁Ω∞: Protocol-V0id404</h1>
+    <div class="buttons">
+      <button class="btn">𒅆𒂵𒀸</button>
+      <button class="btn">𒊬𒍑𒀭</button>
+      <button class="btn">𒀭𒈹𒂗</button>
+      <button class="btn">𒈗𒂊𒁍</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const chars = "⟁Ω𒀸∞𒊬01𒀭𒂗𒁍⟠ΔΞλ₪⊗⟊∎ᛗᛉᚢ";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: Math.floor(columns) }, () => 1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ffe7";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 45);
+  </script>
+</body>
+</html>
