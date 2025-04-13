@@ -5,98 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>∆Ω-Unit.404</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background: black;
-      color: #0f0;
-      font-family: monospace;
+      padding: 0;
       overflow: hidden;
+      background: black;
+      font-family: monospace;
+      color: #0f0;
     }
+
     canvas {
+      display: block;
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 1;
+      z-index: 0;
     }
-    .content {
+
+    .center-content {
       position: absolute;
       top: 50%;
       left: 50%;
-      z-index: 2;
       transform: translate(-50%, -50%);
+      z-index: 1;
       text-align: center;
+      color: #ff0000;
     }
+
     h1 {
-      font-size: 2rem;
-      color: red;
-      margin-bottom: 1rem;
+      font-size: 32px;
+      margin-bottom: 30px;
     }
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .btn {
-      background: rgba(255, 255, 255, 0.1);
+
+    .mystic-button {
+      background: none;
       border: 2px solid #0f0;
-      padding: 10px 20px;
       color: #0f0;
-      font-size: 1.1rem;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 20px;
+      font-family: 'Courier New', monospace;
       cursor: pointer;
-      transition: 0.3s;
-      border-radius: 10px;
+      transition: all 0.3s ease;
+      border-radius: 8px;
     }
-    .btn:hover {
+
+    .mystic-button:hover {
       background: #0f0;
       color: black;
     }
   </style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
-  <div class="content">
+  <canvas id="matrixCanvas"></canvas>
+  <div class="center-content">
     <h1>∆Ω-Unit.404</h1>
-    <div class="buttons">
-      <div class="btn">𒀱𒁲𒄿𒈾</div>
-      <div class="btn">𒈙𒅗𒊏𒀸</div>
-      <div class="btn">𒀭𒈨𒌍𒅆</div>
-    </div>
+    <button class="mystic-button">𒀱𒈾𒋼</button>
+    <button class="mystic-button">𒆜𒀸𒆠</button>
+    <button class="mystic-button">𒂊𒁕𒅗</button>
   </div>
 
   <script>
-    const canvas = document.getElementById('matrix');
+    const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const alphabet = katakana + latin + nums;
+    const katakana = 'アカサタナハマヤラワンイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロ';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars = (katakana + latin).split('');
 
-    const fontSize = 14;
+    const fontSize = 12;
     const columns = canvas.width / fontSize;
-    const drops = Array.from({length: columns}).fill(1);
+    const drops = Array(Math.floor(columns)).fill(1);
 
-    function draw() {
+    function drawMatrix() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
       ctx.fillStyle = '#0f0';
       ctx.font = fontSize + 'px monospace';
 
       for (let i = 0; i < drops.length; i++) {
-        const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
           drops[i] = 0;
         }
+
         drops[i]++;
       }
     }
 
-    setInterval(draw, 70);
+    setInterval(drawMatrix, 40);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
   </script>
 </body>
 </html>
-Update index.html with new mysterious UI
