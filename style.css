@@ -1,0 +1,46 @@
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #ff0033;
+  font-family: 'Cairo', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.logo {
+  font-size: 3rem;
+  color: #39ff14;
+  text-shadow: 0 0 10px #39ff14;
+}
+
+.intro-text {
+  font-size: 1.5rem;
+  color: #ff0033;
+  margin-top: 10px;
+  text-shadow: 0 0 5px red;
+}
+
+.secret-button {
+  margin-top: 40px;
+  background-color: #111;
+  border: 2px solid #39ff14;
+  padding: 20px 30px;
+  border-radius: 2rem;
+  box-shadow: 0 0 15px #39ff14;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #39ff14;
+  text-shadow: 0 0 10px #39ff14;
+  transition: transform 0.3s ease;
+}
+
+.secret-button:hover {
+  transform: scale(1.1);
+}

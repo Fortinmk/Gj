@@ -1,0 +1,40 @@
+
+<style>
+.glow-text {
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  color: #ff0033;
+  text-shadow:
+    0 0 5px #ff0033,
+    0 0 10px #ff0033,
+    0 0 15px #ff00cc,
+    0 0 20px #8affff,
+    0 0 25px #33ffcc,
+    0 0 30px #cc00ff;
+  animation: glowCycle 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowCycle {
+  0% {
+    text-shadow:
+      0 0 5px #ff0033,
+      0 0 10px #ff0033,
+      0 0 15px #ff00cc;
+    color: #ff0033;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #33ffcc,
+      0 0 20px #00ff99,
+      0 0 30px #cc00ff;
+    color: #cc00ff;
+  }
+  100% {
+    text-shadow:
+      0 0 5px #ff0066,
+      0 0 15px #8affff,
+      0 0 25px #33ffcc;
+    color: #ff3366;
+  }
+}
+</style>
