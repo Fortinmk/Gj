@@ -1,117 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>𓂀 ∆Ω-Unit.404</title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      overflow: hidden;
-      font-family: monospace;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .center-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: #cc66ff;
-    }
-
-    .site-title {
-      font-size: 32px;
-      color: #ff66cc;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px #ff99ff, 0 0 20px #cc33cc;
-      font-family: 'Segoe UI Symbol', monospace;
-    }
-
-    .secret-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #a833ff;
-      color: #99ffcc;
-      font-size: 24px;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Segoe UI Symbol', monospace;
-      text-shadow: 0 0 5px #66ffcc;
-    }
-
-    .secret-btn:hover {
-      background: #330044;
-      box-shadow: 0 0 10px #99ffcc;
-    }
-
-    .subtitle {
-      color: #ccffcc;
-      font-size: 12px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-
-<canvas id="matrixCanvas"></canvas>
-
-<div class="center-content">
-  <div class="site-title">𓂀 ∆Ω-Unit.404</div>
-  <button class="secret-btn">𓂀</button>
-  <button class="secret-btn">𒀭</button>
-  <button class="secret-btn">𓊽</button>
-  <button class="secret-btn">𒁃</button>
-  <p class="subtitle">▧ اضغط أحد الرموز لتكشف عن الطبقة التالية ▧</p>
-</div>
-
-<script>
-  const canvas = document.getElementById('matrixCanvas');
-  const ctx = canvas.getContext('2d');
-
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
-  const letters = '𓂀𓊽𒀭𒁃 ∆ Ω µ ⌘ ⟁ ₯ Ξ ψ ∞ Ϟ ✱ ✶ ✧ ⊡ ⧖'.split('');
-  const fontSize = 18;
-  const columns = Math.floor(canvas.width / fontSize);
-  const drops = Array(columns).fill(1);
-
-  function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#cc66ff';
-    ctx.shadowColor = '#99ffcc';
-    ctx.shadowBlur = 4;
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters[Math.floor(Math.random() * letters.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>∆Ω-Unit.404</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0f2d1f;
+        font-family: monospace;
+        color: #fff;
+        overflow-x: hidden;
       }
-      drops[i]++;
-    }
-  }
 
-  setInterval(draw, 50);
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: repeating-linear-gradient(
+          0deg,
+          rgba(0, 255, 128, 0.1) 0px,
+          rgba(0, 255, 128, 0.1) 2px,
+          transparent 2px,
+          transparent 4px
+        );
+        animation: flicker 5s infinite alternate;
+      }
 
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
+      @keyframes flicker {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.95;
+        }
+      }
 
-</body>
+      .title {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 2.5em;
+        color: #ff00ff;
+        text-shadow: 0 0 10px #ff00ff;
+      }
+
+      .symbols {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        gap: 20px;
+      }
+
+      .symbol-row {
+        display: flex;
+        gap: 30px;
+      }
+
+      .symbol {
+        padding: 20px;
+        border: 2px solid #00ffaa;
+        border-radius: 10px;
+        color: #00ffaa;
+        font-size: 1.5em;
+        text-align: center;
+        transition: transform 0.2s;
+      }
+
+      .symbol:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+        box-shadow: 0 0 15px #00ffaa;
+      }
+
+      .footer-text {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 1em;
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div class="title">∆Ω-<br />Unit.404</div>
+
+    <div class="symbols">
+      <div class="symbol-row">
+        <div class="symbol">𓂀</div>
+      </div>
+      <div class="symbol-row">
+        <div class="symbol">✴</div>
+        <div class="symbol">♜</div>
+      </div>
+      <div class="symbol-row">
+        <div class="symbol">〄〄〄</div>
+      </div>
+    </div>
+
+    <div class="footer-text">اضغط أحد الرموز لتكشف عن الطبقة التالية ☰</div>
+  </body>
 </html>
