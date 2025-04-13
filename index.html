@@ -8,102 +8,98 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      height: 100%;
       background: black;
+      overflow: hidden;
       font-family: monospace;
-      color: #0f0;
+      color: #00ff00;
     }
-
     canvas {
-      display: block;
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       z-index: 0;
     }
-
-    .center-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .content {
+      position: relative;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      flex-direction: column;
+      color: #00ffcc;
       text-align: center;
-      color: #ff0000;
     }
-
     h1 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
-
-    .mystic-button {
-      background: none;
-      border: 2px solid #0f0;
-      color: #0f0;
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 20px;
-      font-family: 'Courier New', monospace;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .button-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .ancient-button {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #00ffcc;
+      padding: 12px 20px;
+      font-size: 16px;
       border-radius: 8px;
+      color: #00ffcc;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      transition: all 0.3s ease;
     }
-
-    .mystic-button:hover {
-      background: #0f0;
+    .ancient-button:hover {
+      background: #00ffcc;
       color: black;
     }
   </style>
 </head>
 <body>
-  <canvas id="matrixCanvas"></canvas>
-  <div class="center-content">
+  <canvas id="matrix"></canvas>
+  <div class="content">
     <h1>∆Ω-Unit.404</h1>
-    <button class="mystic-button">𒀱𒈾𒋼</button>
-    <button class="mystic-button">𒆜𒀸𒆠</button>
-    <button class="mystic-button">𒂊𒁕𒅗</button>
+    <div class="button-container">
+      <button class="ancient-button">𒀱𒈠</button>
+      <button class="ancient-button">𒆠𒂗𒍣</button>
+      <button class="ancient-button">𒊕𒀭</button>
+    </div>
   </div>
 
   <script>
-    const canvas = document.getElementById('matrixCanvas');
+    const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
 
-    const katakana = 'アカサタナハマヤラワンイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロ';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const chars = (katakana + latin).split('');
-
-    const fontSize = 12;
+    const letters = "アカサタナハマヤラワ0123456789ｱｶｻﾀﾅﾊﾏﾔﾗﾜ";
+    const fontSize = 10;
     const columns = canvas.width / fontSize;
+
     const drops = Array(Math.floor(columns)).fill(1);
 
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#0f0';
-      ctx.font = fontSize + 'px monospace';
+      ctx.fillStyle = "#00ff00";
+      ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
           drops[i] = 0;
         }
-
         drops[i]++;
       }
     }
 
-    setInterval(drawMatrix, 40);
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
+    setInterval(drawMatrix, 80);
   </script>
 </body>
 </html>
